@@ -529,7 +529,7 @@ HTML - Hyper Text Markup Language
             - Custom Hooks : create js file to define a specific function for a special task. export the function from that file. function name must start with the 'use' keyword
             - useParams() : hook will return dynamic value of route associated with a component
             - useSelector() : hook used to select state from redux store
-            - useDispatch() : hook used to dispatch action from a component
+            - useDispatch() : hook used to dispatch action from a component 
     13. Form Handling in React : there are 2 ways to manage data inside the form by a component 
         - Controlled Components : are component which store form data inside its own state
         - Uncontrolled Components : component who access form data using its DOM elements reference 
