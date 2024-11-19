@@ -1,12 +1,26 @@
 // rafce
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeItem } from '../redux/slices/wishlistSlice'
+import { addToCart } from '../redux/slices/cartSlice'
 
 const Whishlist = () => {
+  const userCart = useSelector(state=>state.cartReducer)
   const dispatch = useDispatch()
   const userWishlist = useSelector(state=>state.wishlistReducer)
+
+  const handleCart = (product)=>{
+    dispatch(removeItem(product.id))
+    dispatch(addToCart(product))
+    const existingproduct = userCart?.find(item=>item?.id==product.id)
+    if(existingproduct){
+      alert("Product quantity is incrementing in your cart!!!")
+    }else{
+      alert("Product added to your cart!!!")
+    }
+  }
+
   return (
     <>
     <Header/>
@@ -24,7 +38,7 @@ const Whishlist = () => {
                 <h3 className="text-xl font-bold"> {product?.title} </h3>
                 <div className="flex justify-evenly mt-3">
                   <button onClick={()=>dispatch(removeItem(product?.id))} className="text-xl"><i className="fa-solid fa-heart-circle-xmark text-red-500"></i></button>
-                  <button className="text-xl"><i className="fa-solid fa-cart-plus text-green-700"></i></button>
+                  <button onClick={()=>handleCart(product)} className="text-xl"><i className="fa-solid fa-cart-plus text-green-700"></i></button>
                 </div>
               </div>
             </div>
